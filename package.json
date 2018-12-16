@@ -1,0 +1,26 @@
+{
+  "name": "cache",
+  "version": "1.0.0",
+  "description": "Cache API's and mongo ",
+  "main": "server.js",
+  "scripts": {
+    "start":"node server.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samateja/cache"
+  },
+  "author": "Venkta Sama",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "http-server": "^0.11.1",
+    "mongoose": "^5.2.15",
+    "node-cache": "^4.2.0",
+    "nodemon": "^1.18.4",
+    "request": "^2.88.0"
+  }
+}

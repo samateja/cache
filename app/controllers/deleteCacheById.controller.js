@@ -25,11 +25,11 @@ const deleteKeyById = (MODEL, callback) => {
   }).catch(err => {
     console.log("error:::", err);
       if(err.kind === 'ObjectId') {
-          return res.status(404).send({
+          return res.status(502).send({
               message: "Cache not found with key " + req.body.keyName
           });
       }
-      return res.status(500).send({
+      return res.status(502).send({
           message: "Error updating note with key " + req.body.keyName
       });
   });
@@ -38,7 +38,7 @@ const deleteKeyById = (MODEL, callback) => {
 // final method to create / update
   deleteKeyById(MODEL, (data) => {
     if (data.status == 502){
-      res.status(200).send(data);
+      res.status(502).send(data);
     } else {
       res.status(200).send(data);
     }

@@ -8,7 +8,7 @@ exports.getKeyById = (req, res) => {
 const getKey = (MODEL, callback) => {
 
   if(!req.body.keyName) {
-      return res.status(400).send({
+      return res.status(502).send({
           message: "please pass key_name."
       });
   }
@@ -25,11 +25,11 @@ const getKey = (MODEL, callback) => {
   }).catch(err => {
     console.log("error:::", err);
       if(err.kind === 'ObjectId') {
-          return res.status(404).send({
+          return res.status(502).send({
               message: "Cache not found with key " + req.body.key_name
           });
       }
-      return res.status(500).send({
+      return res.status(502).send({
           message: "Error updating note with key " + req.body.key_name
       });
   });
@@ -38,9 +38,9 @@ const getKey = (MODEL, callback) => {
 // final method to create / update
   getKey(MODEL, (data) => {
     if (data.status == 502){
-      res.status(200).send(data);
+      res.status(502).send(data);
     } else {
-      res.status(400).send(data);
+      res.status(200).send(data);
     }
 
   })

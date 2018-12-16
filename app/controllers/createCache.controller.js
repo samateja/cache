@@ -11,7 +11,7 @@ var key_name, count = 0, keys = [];
 var maximum_stack_size = 3; // increase the stack size if needed.
 
 if(!req.body.keyName) {
-    return res.status(400).send({
+    return res.status(502).send({
         message: "please pass keyName."
     });
 } else {
@@ -40,11 +40,11 @@ const getCount = (MODEL, callback) => {
   }).catch(err => {
     console.log("error:::", err);
       if(err.kind === 'ObjectId') {
-          return res.status(404).send({
+          return res.status(502).send({
               message: "Error while createing cache " + req.body.keyName
           });
       }
-      return res.status(500).send({
+      return res.status(502).send({
           message: "Error updating cache " + req.body.keyName
       });
   });
@@ -65,11 +65,11 @@ const resetOldCache = (MODEL, callback) => {
   }).catch(err => {
     console.log("error:::", err);
       if(err.kind === 'ObjectId') {
-          return res.status(404).send({
+          return res.status(502).send({
               message: "Error while createing cache " + req.body.keyName
           });
       }
-      return res.status(500).send({
+      return res.status(502).send({
           message: "Error updating cache " + req.body.keyName
       });
   });
@@ -103,12 +103,12 @@ await new Promise(async function(fulfill, reject) {
     }).catch(err => {
       console.log("error:::", err);
         if(err.kind === 'ObjectId') {
-            return res.status(404).send({
+            return res.status(502).send({
                 message: "Cache not found with key " + req.body.keyName
             });
         }
         reject();
-        return res.status(500).send({
+        return res.status(502).send({
             message: "Error updating cache with key " + req.body.keyName
         });
     });
